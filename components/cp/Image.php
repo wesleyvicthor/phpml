@@ -6,15 +6,32 @@ use phpml\components\Component;
 
 class Image extends Component
 {
-    public function __construct()
-    {
-        parent::__construct();
-        $this->properties['src'] = null;
-    }
-    
+ 	protected $allowChildren = false;
+ 	
     public function __toString()
     {
-        return "<img src=\"{$this->properties['src']}\" />";
-        
+        return $this->assemble();
+    }
+
+    public function getProperties()
+    {
+    	return array(
+			'src' => null,
+			'class' => null,
+			'alt' => null,
+			'title' => null
+    	);
+    }
+
+    public function assemble()
+    {
+    	$element = '<img';
+    	foreach ($this->properties as $key => $value) {
+    		if (!is_null($value) && !empty($value)) {
+    			$element .= " {$key}={$value} ";
+    		}
+    	}
+    	$element .= '/>';
+    	return $element;
     }
 }

@@ -2,21 +2,16 @@
 
 namespace phpml\components;
 
-use phpml\lib\exception\util\ExceptionFactory;
+use phpml\lib\exception\util\ExceptionFactory,
+    phpml\components\ComponentInterface;
 
-abstract class Component
+abstract class Component implements ComponentInterface
 {
-    protected $allowChildren = true;
-    protected $children;
+    protected $allowChildren    = true;
+    protected $children         = array();
+    protected $properties       = array();
     protected $parent;
     protected $id;
-    protected $properties;
-    
-    public function __construct()
-    {
-        $this->children = array();
-        $this->properties = array();
-    }
     
     public function isChildrenAllowed()
     {
@@ -29,6 +24,7 @@ abstract class Component
             throw ExceptionFactory::createChildrenNotAllowed(__FILE__, __LINE__, $this->getId());
         
         $this->children[] = $child;
+        return $this;
     }
     
     public function setParent($parent)
@@ -50,11 +46,18 @@ abstract class Component
     {
         return $this->id;
     }
+
+    public function getProperties()
+    {
+        return $this->properties;
+    }
+
+    abstract public function assemble();
     
     public function __set($prop, $value)
     {
         // Does this property exist?
-        if (array_key_exists($prop, $this->properties))
+        if (array_key_exists($prop, $this->getProperties()))
             $this->properties[$prop] = $value;
         else
             throw ExceptionFactory::createSetUnexpectedProperty(
@@ -68,7 +71,7 @@ abstract class Component
     public function __get($prop)
     {
         // Does this property exist?
-        if (array_key_exists($prop, $this->properties))
+        if (array_key_exists($prop, $this->getProperties()))
             return $this->properties[$prop];
         else
             throw ExceptionFactory::createGetUnexpectedProperty(

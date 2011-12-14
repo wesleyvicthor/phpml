@@ -1,12 +1,14 @@
 <?php
 
-use phpml\lib\parser\Symbols;
-use phpml\components\Label;
-use phpml\lib\PHPML;
-use phpml\lib\parser\Compiler;
-use phpml\lib\parser\Parser;
-use \phpml\lib\parser\File,
-    \phpml\lib\parser\Scanner;
+use phpml\lib\parser\Symbols,
+    phpml\components\Label,
+    phpml\components\Input,
+    phpml\components\Div,
+    phpml\lib\PHPML,
+    phpml\lib\parser\Compiler,
+    phpml\lib\parser\Parser,
+    phpml\lib\parser\File,
+    phpml\lib\parser\Scanner;
 
 spl_autoload_register(function ($name) {
     require '../' . str_replace('\\', DIRECTORY_SEPARATOR, $name) . '.php';
@@ -17,8 +19,16 @@ try {
     $tree = PHPML::getInstance()->loadTemplate('tests/_files/first_page.pml');
     
     $label = new Label();
-    $label->value = 'Thiago';
-    $tree->getElementById('ha')->addChild($label);
+    $label->value = 'My Input:';
+    $label->for = 'my-input';
+
+    $input = new Input();
+    $input->id = "my-input";
+
+    $tree->getElementById('form-wrapper')
+        ->addChild($label)
+        ->addChild($input);
+    
     $tree->getElementById('img')->src = 'https://www.google.com/logos/classicplus.png';
     
     echo $tree;

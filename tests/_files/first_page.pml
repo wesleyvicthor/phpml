@@ -4,11 +4,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Hello world</title>
+<style type="text/css">
+	
+</style>
 </head>
 <body>
-	<php:Register ns="phpml\components\cp" prefix="cp" />
-	<php:Div id ="ha">
+<php:Register ns="phpml\components\cp" prefix="cp" />
+<php:Div id="container">
+	<php:Div id="form-wrapper">
 		<cp:Image id="img" />
 	</php:Div>
+</php:Div>
 </body>
 </html>
