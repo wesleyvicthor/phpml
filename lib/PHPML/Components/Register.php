@@ -2,7 +2,8 @@
 
 namespace PHPML\Components;
 
-use PHPML\Parser\Symbols;
+use PHPML\Parser\Symbols,
+    PHPML\Components\Component;
 
 class Register extends Component
 {

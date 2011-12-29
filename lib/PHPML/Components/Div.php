@@ -2,6 +2,8 @@
 
 namespace PHPML\Components;
 
+use PHPML\Components\Component;
+
 class Div extends Component
 {
     public function __toString()

@@ -2,6 +2,8 @@
 
 namespace PHPML\Components;
 
+use PHPML\Components\Component;
+
 class Label extends Component
 {
 	    

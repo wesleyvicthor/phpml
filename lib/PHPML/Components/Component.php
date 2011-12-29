@@ -2,12 +2,9 @@
 
 namespace PHPML\Components;
 
-<<<<<<< HEAD
-use phpml\lib\exception\util\ExceptionFactory,
-    phpml\components\ComponentInterface;
-=======
-use PHPML\Exception\Util\ExceptionFactory;
->>>>>>> upstream/master
+use PHPML\Exception\Util\ExceptionFactory,
+    PHPML\Components\ComponentInterface;
+
 
 abstract class Component implements ComponentInterface
 {

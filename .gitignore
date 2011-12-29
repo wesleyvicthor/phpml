@@ -3,3 +3,4 @@ nbproject
 .buildpath
 tests/cc/
 .project
+tests/web

@@ -9,7 +9,7 @@
 </style>
 </head>
 <body>
-<php:Register ns="phpml\components\cp" prefix="cp" />
+<php:Register ns="PHPML\Components\Cp" prefix="cp" />
 <php:Div id="container">
 	<php:Div id="form-wrapper">
 		<cp:Image id="img" />
